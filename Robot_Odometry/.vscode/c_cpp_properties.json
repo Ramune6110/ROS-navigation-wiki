@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/keigo/catkin_ws/devel/include/**",
+                "/opt/ros/melodic/include/**",
+                "/home/keigo/catkin_ws/src/ROS_robot_programing_bible/ROS_Parameter/include/**",
+                "/home/keigo/catkin_ws/src/ROS_navigation/ROS_wiki/Robot_Odometry/include/**",
+                "/home/keigo/catkin_ws/src/ROS_navigation/ROS_wiki/Robot_setup_tf/include/**",
+                "/home/keigo/catkin_ws/src/my_ROS_mobile_robot/my_robot_base/include/**",
+                "/home/keigo/catkin_ws/src/ROS_tutorials/robot_example/include/**",
+                "/home/keigo/catkin_ws/src/rrbot_lqr_control/rrbot_control/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++14"
+        }
+    ],
+    "version": 4
+}
