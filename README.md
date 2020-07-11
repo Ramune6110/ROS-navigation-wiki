@@ -1,6 +1,6 @@
 # ROS_navigation_wiki
 ROS navigationに関する基本事項についてのまとめ
-# Robot_setup_tf
+# Robot_tf
 単純なフレーム間の座標変換(tf)
 ## wiki
 http://wiki.ros.org/navigation/Tutorials/RobotSetup/TF  
@@ -10,7 +10,7 @@ Ubuntu18.04 ROS melodic
 パッケージの作成
 ```bash
 cd ~/catkin_ws/src
-catkin_create_pkg Robot_setup_tf roscpp tf geometry_msgs
+catkin_create_pkg Robot_tf roscpp tf geometry_msgs
 ```
 ノードのビルド
 ```bash
@@ -23,11 +23,11 @@ roscore
 ```
 tfのbroadcasterの起動
 ```bash
-rosrun Robot_setup_tf tf_broadcaster
+rosrun Robot_tf tf_broadcaster
 ```
 tfのlistenerの起動  
 ```bash
-rosrun Robot_setup_tf tf_listener
+rosrun Robot_tf tf_listener
 ```
 # Robot_Odometry
 オドメトリの情報を取得
