@@ -62,3 +62,36 @@ rostopic list
 ```bash
 rostopic echo /odom
 ```
+# Robot_laser_scan
+センサーデータの取得
+## wiki
+http://wiki.ros.org/navigation/Tutorials/RobotSetup/Sensors
+## Environment
+Ubuntu18.04 ROS melodic
+## Procedure
+パッケージの作成
+```bash
+cd ~/catkin_ws/src
+catkin_create_pkg Robot_laser_scan roscpp sensor_msgs
+```
+ノードのビルド
+```bash
+cd ~/catkin_ws
+catkin_make
+```
+ROSの起動
+```bash
+roscore
+```
+publisherの起動
+```bash
+rosrun Robot_laser_scan laser_scan_publisher
+```
+トピックリストの確認 
+```bash
+rostopic list
+```
+センサーデータ情報の確認
+```bash
+rostopic echo /scan
+```
