@@ -129,7 +129,7 @@ rostopic list
 rostopic echo /cloud
 ```
 # Robot_navigation_goal
-goalを与える
+goal(位置と姿勢)を与える
 ## Environment
 Ubuntu18.04 ROS melodic
 ## Procedure
