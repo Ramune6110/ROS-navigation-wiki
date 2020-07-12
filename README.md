@@ -128,4 +128,30 @@ rostopic list
 ```bash
 rostopic echo /cloud
 ```
-
+# Robot_navigation_goal
+goalを与える
+## Environment
+Ubuntu18.04 ROS melodic
+## Procedure
+パッケージの作成
+```bash
+cd ~/catkin_ws/src
+catkin_create_pkg Robot_navigation_goal actionlib move_base_msgs roscpp tf
+```
+ノードのビルド
+```bash
+cd ~/catkin_ws
+catkin_make
+```
+ROSの起動
+```bash
+roscore
+```
+publisherの起動
+```bash
+rosrun Robot_navigation_goal navigation_goal
+```
+トピックリストの確認 
+```bash
+rostopic list
+```
