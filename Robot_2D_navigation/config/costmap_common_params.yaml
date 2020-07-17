@@ -1,12 +1,15 @@
 # 広域経路計画, 局所経路計画で共通のファイル
 # obstacle_rangeは, コストマップに投入される障害物の最大範囲を決定
-# ここでは, 2.0mに設定しています. つまり, ロボットはベースから2.0m以内にある
+# ここでは, 2.0mに設定しています. ロボットはベースから2.0m以内にある
 # 障害物の情報のみでマップを更新するということです
 obstacle_range: 2.0
-# raytrace_rangeは, センサの読み取り値が与えられたフリースペースをレイトレースする範囲を決定
-# 3.0mに設定すると, ロボットはセンサーの読み取り値が与えられた3.0m先までのスペースを排除しようとします
+# raytrace_rangeは, センサの読み取り値が与えられた
+# フリースペースをレイトレースする範囲を決定
+# 3.0mに設定すると, ロボットはセンサーの読み取り値が
+# 与えられた3.0m先までのスペースを排除しようとします
 raytrace_range: 3.0
-# フットプリントを指定する場合, ロボットの中心は(0.0, 0.0)と仮定し, 時計回りと反時計回りの両方の指定をサポート
+# フットプリントを指定する場合, ロボットの中心は(0.0, 0.0)と仮定し,
+# 時計回りと反時計回りの両方の指定をサポート
 # footprint: [[x0, y0], [x1, y1], ... [xn, yn]]
 # 円形の場合はロボットの半径を設定
 robot_radius: 0.1
@@ -17,8 +20,10 @@ inflation_radius: 0.5
 # observation_sourcesは, スペースで区切られたコストマップに情報を渡すセンサのリストを定義
 observation_sources: laser_scan_sensor point_cloud_sensor
 # observation_sourcesに記載されているセンサーのパラメーターを設定
-# frame_nameにはセンサの座標フレーム名を設定し, data_typeにはトピックが使用する
-# メッセージに応じてLaserScanかPointCloudかを設定し, topic_nameにはセンサがデータを公開するトピック名を設定する
+# frame_nameにはセンサの座標フレーム名を設定し, 
+# data_typeにはトピックが使用する
+# メッセージに応じてLaserScanかPointCloudかを設定し, 
+# topic_nameにはセンサがデータを公開するトピック名を設定する
 # markingとclearingは, センサがコストマップに障害物情報を追加するために使用されるか,
 # コストマップから障害物情報をクリアするために使用されるか, またはその両方を行うために使用されるかを決定する。
 laser_scan_sensor: {sensor_frame: laser_frame, data_type: LaserScan, topic: scan, marking: true, clearing: true}
