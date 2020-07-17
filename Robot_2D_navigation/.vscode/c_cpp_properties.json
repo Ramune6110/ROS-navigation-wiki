@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/keigo/catkin_ws/devel/include/**",
+                "/opt/ros/melodic/include/**",
+                "/home/keigo/catkin_ws/src/ROS_robot_programing_bible/ROS_Parameter/include/**",
+                "/home/keigo/catkin_ws/src/ROS_navigation/ROS_wiki/Robot_Odometry/include/**",
+                "/home/keigo/catkin_ws/src/ROS_navigation/ROS_wiki/Robot_laser_scan/include/**",
+                "/home/keigo/catkin_ws/src/ROS_navigation/ROS_wiki/Robot_navigation_goal/include/**",
+                "/home/keigo/catkin_ws/src/ROS_navigation/ROS_wiki/Robot_point_cloud_publisher/include/**",
+                "/home/keigo/catkin_ws/src/ROS_navigation/ROS_wiki/Robot_tf/include/**",
+                "/home/keigo/catkin_ws/src/my_ROS_mobile_robot/my_robot_base/include/**",
+                "/home/keigo/catkin_ws/src/ROS_navigation/nav_lecture/include/**",
+                "/home/keigo/catkin_ws/src/ROS_tutorials/robot_example/include/**",
+                "/home/keigo/catkin_ws/src/rrbot_lqr_control/rrbot_control/include/**",
+                "/home/keigo/catkin_ws/src/ros_turtlebot3/turtlebot3_simulations/turtlebot3_fake/include/**",
+                "/home/keigo/catkin_ws/src/ros_turtlebot3/turtlebot3_simulations/turtlebot3_gazebo/include/**",
+                "/home/keigo/catkin_ws/src/ros_turtlebot3/turtlebot3/turtlebot3_slam/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++14"
+        }
+    ],
+    "version": 4
+}

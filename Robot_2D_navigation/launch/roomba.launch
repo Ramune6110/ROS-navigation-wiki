@@ -1,0 +1,5 @@
+<launch>
+
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find Robot_2D_navigation)/rviz/roomba.rviz" />
+    
+</launch> 

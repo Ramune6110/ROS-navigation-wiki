@@ -1,0 +1,24 @@
+<launch>
+    <!-- MAP server -->
+    <node pkg="map_server" type="map_server" name="map_server" output="screen" args="$(find Robot_2D_navigation)/maps/map1.yaml"/>
+
+    <!--- AMCL -->
+    <include file="$(find Robot_2D_navigation)/launch/amcl.launch">
+        <param name="initial_pose_x" vlaue="1.0"/>
+        <param name="initial_pose_y" vlaue="0.0"/>
+        <param name="initial_pose_z" vlaue="0.0"/>
+    </include>
+
+    <node pkg = "move_base" type = "move_base" respawn = "false" name = "move_base" output = "screen">
+        <rosparam file="$(find Robot_2D_navigation)/config/costmap_common_params.yaml" command = "load" ns = "global_costmap" />
+        <rosparam file="$(find Robot_2D_navigation)/config/costmap_common_params.yaml" command = "load" ns = "local_costmap" />
+        <rosparam file="$(find Robot_2D_navigation)/config/local_costmap_params.yaml" command = "load" />
+        <rosparam file="$(find Robot_2D_navigation)/config/global_costmap_params.yaml" command = "load" />
+        <rosparam file="$(find Robot_2D_navigation)/config/base_local_planner_params.yaml" command = "load" />
+    </node>
+
+    <node pkg="Robot_Odometry" type="Odometry_publisher" name="Odometry_publisher" output="screen" />
+    <node pkg="Robot_navigation_goal" type="navigation_goal" name="navigation_goal" output="screen" />
+    <node pkg="Robot_laser_scan" type="laser_scan_publisher" name="laser_scan_publisher" output="screen" />
+
+</launch> 
