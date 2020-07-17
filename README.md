@@ -155,3 +155,37 @@ rosrun Robot_navigation_goal navigation_goal
 ```bash
 rostopic list
 ```
+# Robot_2D_navigation
+navigationの基礎
+## wiki
+http://wiki.ros.org/navigation/Tutorials/RobotSetup#Robot_Setup
+## Environment
+Ubuntu18.04 ROS melodic
+## Procedure
+パッケージの作成
+```bash
+cd ~/catkin_ws/src
+catkin_create_pkg Robot_2D_navigation move_base
+```
+ノードのビルド
+```bash
+cd ~/catkin_ws
+catkin_make
+```
+ROSの起動
+```bash
+roscore
+```
+roslaunchの起動
+```bash
+roslaunch Robot_2D_navigation robot_navigation.launch
+```
+トピックリストの確認 
+```bash
+rostopic list
+```
+rqt graphの確認
+```bash
+rqt_graph
+```
+[!rqt_graph]
