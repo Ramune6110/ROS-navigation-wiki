@@ -188,4 +188,4 @@ rqt graphの確認
 ```bash
 rqt_graph
 ```
-[!rosgraph](https://github.com/Ramune6110/ROS_navigation_wiki/blob/master/Robot_2D_navigation/figure/rosgraph.png)
+![rosgraph](https://github.com/Ramune6110/ROS_navigation_wiki/blob/master/Robot_2D_navigation/figure/rosgraph.png)
