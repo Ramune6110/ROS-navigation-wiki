@@ -1,17 +1,22 @@
 <launch>
     <!-- Robot model -->
     <arg name="model" default="$(find Robot_2D_navigation)/xacro/robot.xacro" />
+    <arg name="x_pos" default="-2.0"/>
+    <arg name="y_pos" default="-0.5"/>
+    <arg name="z_pos" default="0.0"/>
     <param name="robot_description" command="$(find xacro)/xacro $(arg model) --inorder"/>
-
+    
     <!-- Gazebo world -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find Robot_2D_navigation)/world/robot_world.world"/>
         <arg name="paused" value="false"/>
         <arg name="use_sim_time" value="true"/>
         <arg name="gui" value="true"/>
         <arg name="headless" value="false"/>
         <arg name="debug" value="false"/>
     </include>
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot" />
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot 
+        -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)" />
 
     <!-- MAP server -->
     <arg name="map_file" default="$(find Robot_2D_navigation)/maps/map.yaml"/>
@@ -29,6 +34,7 @@
         <rosparam file="$(find Robot_2D_navigation)/config/costmap_common_params.yaml" command = "load" ns = "local_costmap" />
         <rosparam file="$(find Robot_2D_navigation)/config/local_costmap_params.yaml" command = "load" />
         <rosparam file="$(find Robot_2D_navigation)/config/global_costmap_params.yaml" command = "load" />
+        <rosparam file="$(find Robot_2D_navigation)/config/move_base_params.yaml" command="load" />
         <rosparam file="$(find Robot_2D_navigation)/config/base_local_planner_params.yaml" command = "load" />
     </node>
 

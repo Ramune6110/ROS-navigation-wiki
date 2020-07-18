@@ -1,0 +1,16 @@
+# move_baseが非活性化された状態であるとき, costmapノードを停止するかどうか
+shutdown_costmaps: false
+# コントローラ反復周期
+controller_frequency: 10.0
+# 使用可能な計画を探索するときに待機する最大時間
+planner_patience: 5.0
+# コントローラが制御情報を受信するため待機する最大時間
+controller_patience: 15.0
+# 復旧動作のcostmap初期化時に, この距離より遠い場所にある障害物は地図から削除される
+conservative_reset_dist: 3.0
+# 全域計画の反復周期
+planner_frequency: 5.0
+# 復旧動作を実行する前にロボットが微動することを許容する時間
+oscillation_timeout: 10.0
+# ロボットが微動しないように動く必要がある距離
+oscillation_distance: 0.2
