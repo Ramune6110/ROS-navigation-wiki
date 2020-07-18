@@ -1,6 +1,20 @@
 <launch>
+    <!-- Robot model -->
+    <arg name="model" default="$(find Robot_2D_navigation)/xacro/robot.xacro" />
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model) --inorder"/>
+
+    <!-- Gazebo world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot" />
+
     <!-- MAP server -->
-    <arg name="map_file" default="$(find Robot_2D_navigation)/maps/map1.yaml"/>
+    <arg name="map_file" default="$(find Robot_2D_navigation)/maps/map.yaml"/>
     <node pkg="map_server" type="map_server" name="map_server" output="screen" 
         args="$(arg map_file)">
     </node>
@@ -21,7 +35,10 @@
     <node pkg="Robot_Odometry" type="Odometry_publisher" name="Odometry_publisher" output="screen" />
     <node pkg="Robot_navigation_goal" type="navigation_goal" name="navigation_goal" output="screen" />
     <node pkg="Robot_laser_scan" type="laser_scan_publisher" name="laser_scan_publisher" output="screen" />
-    <param name="use_sim_time" value="true" />
-    <node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(find Robot_2D_navigation)/bag/laserScan.bag"/>
-
+    <!-- convert joint states to TF transforms for rviz, etc -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" 
+        respawn="false" output="screen">
+    </node>
+    <!-- rviz --> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find Robot_2D_navigation)/rviz/robot.rviz"/>
 </launch> 
