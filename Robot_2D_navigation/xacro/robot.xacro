@@ -85,7 +85,7 @@
     </collision>
   </link>
   <gazebo reference="body_link">
-    <material>Gazebo/Gray</material>
+    <material>Gazebo/White</material>
   </gazebo>
 
   <xacro:wheel_macro prefix="left_wheel"  parent="base_link" xyz="0 0.1 0.05"/>

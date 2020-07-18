@@ -18,6 +18,11 @@
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot 
         -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)" />
 
+    <!-- load the controllers -->
+    <rosparam command="load" file="$(find Robot_2D_navigation)/config/controller.yaml" />
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	    output="screen" ns="/robot" args="joint_state_controller left_wheel_joint right_wheel_joint"/>
+
     <!-- MAP server -->
     <arg name="map_file" default="$(find Robot_2D_navigation)/maps/map.yaml"/>
     <node pkg="map_server" type="map_server" name="map_server" output="screen" 
@@ -38,13 +43,17 @@
         <rosparam file="$(find Robot_2D_navigation)/config/base_local_planner_params.yaml" command = "load" />
     </node>
 
+    <!-- node --> 
     <node pkg="Robot_Odometry" type="Odometry_publisher" name="Odometry_publisher" output="screen" />
     <node pkg="Robot_navigation_goal" type="navigation_goal" name="navigation_goal" output="screen" />
     <node pkg="Robot_laser_scan" type="laser_scan_publisher" name="laser_scan_publisher" output="screen" />
+
     <!-- convert joint states to TF transforms for rviz, etc -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" 
         respawn="false" output="screen">
+        <remap from="/joint_states" to="/robot/joint_states" />
     </node>
+
     <!-- rviz --> 
     <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find Robot_2D_navigation)/rviz/robot.rviz"/>
 </launch> 
