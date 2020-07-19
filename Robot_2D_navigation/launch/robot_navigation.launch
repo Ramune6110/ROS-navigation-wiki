@@ -45,7 +45,7 @@
 
     <!-- node --> 
     <node pkg="Robot_Odometry" type="Odometry_publisher" name="Odometry_publisher" output="screen" />
-    <node pkg="Robot_navigation_goal" type="navigation_goal" name="navigation_goal" output="screen" />
+    <!-- <node pkg="Robot_navigation_goal" type="navigation_goal" name="navigation_goal" output="screen" /> --> 
     <node pkg="Robot_laser_scan" type="laser_scan_publisher" name="laser_scan_publisher" output="screen" />
 
     <!-- convert joint states to TF transforms for rviz, etc -->

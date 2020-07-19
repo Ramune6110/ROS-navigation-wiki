@@ -20,11 +20,21 @@ int main(int argc, char** argv)
     // アクション目標のオブジェクト宣言
     move_base_msgs::MoveBaseGoal goal;
     // ロボットにゴールを送って ２メートル前に移動させる
-    goal.target_pose.header.frame_id    = "base_link";
+    //goal.target_pose.header.frame_id    = "base_link";
+    goal.target_pose.header.frame_id    = "map";
     goal.target_pose.header.stamp       = ros::Time::now();
-    goal.target_pose.pose.position.x    = 2.0;
-    goal.target_pose.pose.position.y    = 0.2;
-    goal.target_pose.pose.orientation.w = 0.1;
+    try{
+		goal.target_pose.pose.position.x    = atof(argv[1]);
+		goal.target_pose.pose.position.y    = atof(argv[2]);
+		goal.target_pose.pose.orientation.w = atof(argv[3]);
+	   }
+	catch(int e){
+
+		goal.target_pose.pose.position.x    = 2.0;
+		goal.target_pose.pose.position.y    = 0.2;
+		goal.target_pose.pose.orientation.w = 0.1;
+	}
+
     // アクション目標の転送
     ac.sendGoal(goal);
 
