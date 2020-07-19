@@ -2,40 +2,71 @@
     <node pkg="amcl" type="amcl" name="amcl" output="screen">
 
         <param name="use_map_topic" value="true" />
-        <!-- Publish scans from best pose at a max of 10 Hz -->
-        <param name="odom_model_type" value="diff"/>
-        <param name="odom_alpha5" value="10.1"/>
-        <param name="transform_tolerance" value="0.2" />
-        <param name="gui_publish_rate" value="10.0"/>
-        <param name="laser_max_beams" value="30"/>
-        <param name="min_particles" value="500"/>
-        <param name="max_particles" value="2000"/>
-        <param name="kld_err" value="0.05"/>
-        <param name="kld_z" value="0.99"/>
-        <param name="odom_alpha1" value="50.2"/> <!-- noise w from w -->
-        <param name="odom_alpha2" value="10.2"/> <!-- noise w from v -->
 
-        <!-- translation std dev, m -->
-        <param name="odom_alpha3" value="50.8"/> <!-- noise v from v -->
-        <param name="odom_alpha4" value="10.2"/> <!-- noise v from w -->
-        <param name="laser_z_hit" value="0.7"/>
-        <param name="laser_z_short" value="0.2"/>
-        <param name="laser_z_max" value="0.05"/>
-        <param name="laser_z_rand" value="0.05"/>
-        <param name="laser_sigma_hit" value="0.02"/>
-        <param name="laser_lambda_short" value="0.1"/>
-        <param name="laser_model_type" value="likelihood_field"/>
-        
-        <!-- <param name="laser_model_type" value="beam"/> -->
-        <param name="laser_likelihood_max_dist" value="4.0"/>
-        <param name="update_min_d" value="0.02"/>
-        <param name="update_min_a" value="0.01"/>
+        <!-- オドメトリ関連パラメータ -->
+        <!-- ロボットの駆動方式[diff]か[omni]を選べる -->
+        <param name="odom_model_type" value="diff"/>
+        <!-- 回転運動するときに予想されるオドメトリの回転運動量における推定ノイズ -->
+        <param name="odom_alpha1" value="50.2"/>
+        <!-- 並進運動するときに予想されるオドメトリの回転運動量における推定ノイズ -->
+        <param name="odom_alpha2" value="10.2"/>
+        <!-- 回転運動するときに予想されるオドメトリの並進運動量における推定ノイズ -->
+        <param name="odom_alpha3" value="50.8"/>
+        <!-- 並進運動するときに予想されるオドメトリの並進運動量における推定ノイズ -->
+        <param name="odom_alpha4" value="10.2"/>
+        <!-- オドメトリフレーム -->
         <param name="odom_frame_id" value="odom"/>
+        <!-- ??? -->
+        <param name="odom_alpha5" value="10.2"/>
+    
+
+        <!-- フィルタ関連パラメータ -->
+        <!-- 最小許容パーティクル数 -->
+        <param name="min_particles" value="500"/>
+        <!-- 最大許容パーティクル数 -->
+        <param name="max_particles" value="2000"/>
+        <!-- 実際の分布と推定した分布との間の最大エラー -->
+        <param name="kld_err" value="0.05"/>
+        <!-- リサンプリングのインターバル -->
         <param name="resample_interval" value="1"/>
+        <!-- 変換の許容時間 -->
         <param name="transform_tolerance" value="0.1"/>
+        <!-- 指数減少割合 -->
         <param name="recovery_alpha_slow" value="0.001"/>
+        <!-- 指数減少割合 -->
         <param name="recovery_alpha_fast" value="0.1"/>
+        <!-- 10Hz -->
+        <param name="gui_publish_rate" value="10.0"/>
+        <!-- ファイルアップデートを行う前に要求される並進運動 -->
+        <param name="update_min_d" value="0.02"/>
+        <!-- ファイルアップデートを行う前に要求される回転運動 -->
+        <param name="update_min_a" value="0.01"/>
+        <!-- ??? -->
+        <param name="kld_z" value="0.99"/>
+         
+
+        <!-- 距離センサパラメータ -->
+        <!-- レーザーセンシングの最小距離 -->
         <param name="laser_min_range" value="0.01"/>
+        <!-- レーザーセンシングの最大距離 -->
         <param name="laser_max_range" value="20.0"/>
+        <!-- フィルタが更新されるときに使用される最多レーザービームの個数 -->
+        <param name="laser_max_beams" value="30"/>
+        <!-- センサモデルのz_hit混合重み -->
+        <param name="laser_z_hit" value="0.7"/>
+        <!-- センサモデルのz_short混合重み -->
+        <param name="laser_z_short" value="0.2"/>
+        <!-- センサモデルのz_max混合重み -->
+        <param name="laser_z_max" value="0.05"/>
+        <!-- センサモデルのz_rand混合重み -->
+        <param name="laser_z_rand" value="0.05"/>
+        <!-- センサモデルのz_hitを使用したガウシアンモデルの標準分布 -->
+        <param name="laser_sigma_hit" value="0.02"/>
+        <!-- センサモデルのz_shortに対する指数減少パラメータ -->
+        <param name="laser_lambda_short" value="0.1"/>
+        <!-- センサタイプ -->
+        <param name="laser_model_type" value="likelihood_field"/>
+        <!-- likelihood_field方式のセンサのための障害物との最大距離 -->
+        <param name="laser_likelihood_max_dist" value="4.0"/>
     </node>
 </launch>
