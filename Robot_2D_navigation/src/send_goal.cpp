@@ -22,14 +22,12 @@ int main(int argc, char** argv)
     goal.target_pose.header.frame_id = "map";
 	goal.target_pose.header.stamp = ros::Time::now();
     // アクション目標
-    try
-    {
-		goal.target_pose.pose.position.x    = atof(argv[1]);
+    try {
+        goal.target_pose.pose.position.x    = atof(argv[1]);
 		goal.target_pose.pose.position.y    = atof(argv[2]);
 		goal.target_pose.pose.orientation.w = atof(argv[3]);
 	}
-	catch(int e)
-    {
+	catch(int e) {
 		goal.target_pose.pose.position.x    = 2.0;
 		goal.target_pose.pose.position.y    = 0.2;
 		goal.target_pose.pose.orientation.w = 0.1;
