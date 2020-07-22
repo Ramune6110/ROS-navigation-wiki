@@ -1,0 +1,58 @@
+<launch>
+    <!-- Robot model -->
+    <arg name="model" default="$(find robot_slam)/xacro/robot.xacro" />
+    <arg name="x_pos" default="-2.0"/>
+    <arg name="y_pos" default="-0.5"/>
+    <arg name="z_pos" default="0.0"/>
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model) --inorder"/>
+
+    <!-- Gazebo world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find robot_slam)/world/robot_world.world"/>
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot 
+        -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)" />
+
+    <!-- MAP server -->
+    <arg name="map_file" default="$(find robot_slam)/maps/map.yaml"/>
+    <node pkg="map_server" type="map_server" name="map_server" output="screen" args="$(arg map_file)" />
+
+    <!--- AMCL -->
+    <include file="$(find robot_slam)/launch/amcl.launch"/>
+
+    <!--- move_base -->
+    <node pkg = "move_base" type = "move_base" respawn = "false" name = "move_base" output = "screen">
+        <param name="base_local_planner" value="base_local_planner_params/TrajectoryPlannerROS" />
+        <rosparam file="$(find robot_slam)/config/costmap_common_params.yaml" command = "load" ns = "global_costmap" />
+        <rosparam file="$(find robot_slam)/config/costmap_common_params.yaml" command = "load" ns = "local_costmap" />
+        <rosparam file="$(find robot_slam)/config/local_costmap_params.yaml" command = "load" />
+        <rosparam file="$(find robot_slam)/config/global_costmap_params.yaml" command = "load" />
+        <rosparam file="$(find robot_slam)/config/move_base_params.yaml" command="load" />
+        <rosparam file="$(find robot_slam)/config/base_local_planner_params.yaml" command = "load" />
+    </node>
+
+    <!--- Gmapping -->
+    <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping" output="screen"> 
+        <!--- ロボットの基本フレーム -->
+        <param name="base_frame" value="base_footprint"/>
+        <!--- オドメトリフレーム -->
+        <param name="odom_frame" value="odom"/>
+        <param name="map_frame"  value="map"/>
+        <rosparam file="$(find robot_slam)/config/gmapping_params.yaml" command="load" />
+    </node>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
+  
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+        <param name="publish_frequency" type="double" value="50.0" />
+        <remap from="/joint_states" to="/robot/joint_states" />
+    </node>
+
+    <!-- rviz --> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find robot_slam)/rviz/robot.rviz"/>
+</launch>

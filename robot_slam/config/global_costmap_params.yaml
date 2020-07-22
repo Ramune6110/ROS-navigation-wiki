@@ -1,0 +1,15 @@
+# 広域経路計画に対する設定ファイル
+# ナビゲーションスタックは2つのコストマップを使用して, 
+# 世界の障害物に関する情報を格納します. 
+# 1つのコストマップはグローバル計画に使用.
+global_costmap:
+  # 地図フレームの設定
+  # map：ロボットが位置するワールド座標
+  global_frame: map
+  # ロボットベースフレームの設定
+  # base_link：オドメトリodomでのロボット位置
+  robot_base_frame: base_link
+  # 更新周期
+  update_frequency: 5.0
+  # 与えられた地図を使用するかに関する設定
+  static_map: true
